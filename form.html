@@ -836,11 +836,8 @@
                 </div>
 
                 <form class="feedback-form" id="feedbackForm" action="https://formspree.io/f/mwpnejlo" method="POST">
-                    <!-- Hidden fields for Formspree -->
-                    <input type="hidden" name="_subject" id="formSubject" value="New Complaint/Suggestion">
-                    <input type="hidden" name="_next" value="confirmation.html">
-                    <input type="hidden" name="_language" id="formLanguage" value="en">
-                    <input type="hidden" name="_redirect" value="false">
+                    <!-- Formspree required fields -->
+                    <input type="hidden" name="_subject" value="New Message from ALSAQIR Website">
                     
                     <div class="form-group">
                         <label for="name">
@@ -848,6 +845,13 @@
                             <span class="required">*</span>
                         </label>
                         <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span data-en="Email (Optional)" data-ar="البريد الإلكتروني (اختياري)">Email (Optional)</span>
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com">
                     </div>
 
                     <div class="form-group">
@@ -1043,30 +1047,27 @@
             }, 3000);
         }
 
-        // Handle form submission with Formspree integration
+        // Handle form submission - simple validation only
         function handleFormSubmit(event) {
-            event.preventDefault();
-            
             if (!validateForm()) {
-                return;
+                event.preventDefault();
+                return false;
             }
             
-            // Update hidden fields with current values
-            const requestType = localStorage.getItem('requestType');
-            const subjectField = document.getElementById('formSubject');
-            const languageField = document.getElementById('formLanguage');
+            // Store form data for our reference
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value,
+                type: localStorage.getItem('requestType'),
+                language: currentLanguage,
+                timestamp: new Date().toISOString()
+            };
             
-            // Set subject based on request type and language
-            if (currentLanguage === 'ar') {
-                subjectField.value = requestType === 'complaint' ? 'شكوى جديدة من مركز الصقر' : 'اقتراح جديد من مركز الصقر';
-            } else {
-                subjectField.value = requestType === 'complaint' ? 'New Complaint - ALSAQIR Business Center' : 'New Suggestion - ALSAQIR Business Center';
-            }
+            localStorage.setItem('lastSubmission', JSON.stringify(formData));
             
-            languageField.value = currentLanguage;
-            
+            // Show loading state
             const submitButton = document.getElementById('submitBtn');
-            const originalText = submitButton.innerHTML;
             const loadingText = currentLanguage === 'ar' ? 
                 '<span class="button-icon">⏳</span> جاري الإرسال...' : 
                 '<span class="button-icon">⏳</span> Submitting...';
@@ -1074,53 +1075,8 @@
             submitButton.innerHTML = loadingText;
             submitButton.disabled = true;
             
-            // Store form data for confirmation page
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value,
-                type: requestType,
-                language: currentLanguage,
-                timestamp: new Date().toISOString()
-            };
-            
-            localStorage.setItem('lastSubmission', JSON.stringify(formData));
-            
-            // Submit to Formspree
-            const form = document.getElementById('feedbackForm');
-            const formDataToSubmit = new FormData(form);
-            
-            fetch('https://formspree.io/f/mwpnejlo', {
-                method: 'POST',
-                body: formDataToSubmit,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success - redirect to confirmation page
-                    window.location.href = 'confirmation.html';
-                } else {
-                    return response.json().then(data => {
-                        throw new Error(data.error || 'Form submission failed');
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                
-                // Show error message
-                const errorMsg = currentLanguage === 'ar' ? 
-                    'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.' : 
-                    'An error occurred while submitting your message. Please try again.';
-                
-                showError(errorMsg);
-                
-                // Reset button
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            });
+            // Let Formspree handle the form submission
+            return true;
         }
 
         // Navigation functions
