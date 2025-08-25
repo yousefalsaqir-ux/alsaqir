@@ -162,20 +162,29 @@
         .logo {
             width: 140px;
             height: 140px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             border-radius: 50%;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            font-weight: 900;
-            color: #2c3e50;
             border: 8px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
                         inset 0 8px 20px rgba(255, 255, 255, 0.3),
                         0 0 0 20px rgba(255, 255, 255, 0.1);
             position: relative;
             animation: logoFloat 6s infinite ease-in-out;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         @keyframes logoFloat {
@@ -503,7 +512,6 @@
             .logo {
                 width: 100px;
                 height: 100px;
-                font-size: 2rem;
             }
         }
 
@@ -540,7 +548,9 @@
             </div>
             <div class="header-content">
                 <div class="logo-container">
-                    <div class="logo">AS</div>
+                    <div class="logo">
+                        <img src="images/logo.png" alt="ALSAQIR Logo">
+                    </div>
                 </div>
                 <h1 class="company-name" data-en="ALSAQIR BUSINESS MEN SERVICES CENTER" data-ar="مركز الصقر لخدمات رجال الأعمال">ALSAQIR BUSINESS MEN SERVICES CENTER</h1>
                 <h2 class="system-title" data-en="Complaints and Suggestions System" data-ar="نظام الشكاوى والاقتراحات">Complaints and Suggestions System</h2>
@@ -567,7 +577,7 @@
         </main>
 
         <footer class="footer">
-            <p data-en="&copy; 2024 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved." data-ar="&copy; 2024 مركز الصقر لخدمات رجال الأعمال. جميع الحقوق محفوظة.">&copy; 2024 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved.</p>
+            <p data-en="&copy; 2025 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved." data-ar="&copy; 2025 مركز الصقر لخدمات رجال الأعمال. جميع الحقوق محفوظة.">&copy; 2025 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved.</p>
         </footer>
     </div>
 

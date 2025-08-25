@@ -141,17 +141,44 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             border-radius: 50%;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #2c3e50;
             border: 4px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 
+                        inset 0 4px 15px rgba(255, 255, 255, 0.3),
+                        0 0 0 15px rgba(255, 255, 255, 0.1);
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            animation: logoFloat 4s infinite ease-in-out;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0px); 
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 
+                           inset 0 4px 15px rgba(255, 255, 255, 0.3),
+                           0 0 0 15px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                transform: translateY(-6px); 
+                box-shadow: 0 20px 50px rgba(52, 152, 219, 0.4), 
+                           inset 0 4px 15px rgba(255, 255, 255, 0.4),
+                           0 0 0 18px rgba(52, 152, 219, 0.2);
+            }
         }
 
         .company-name {
@@ -361,7 +388,7 @@
         }
 
         .secondary-btn {
-            background: linear-gradient(135d4eg, #6c757d, #5a6268);
+            background: linear-gradient(135deg, #6c757d, #5a6268);
             box-shadow: 0 15px 35px rgba(108, 117, 125, 0.4);
         }
 
@@ -465,300 +492,7 @@
         }
     </style>
 </head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #ffffff 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background: #ffffff;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
-            z-index: 1;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: #ffffff;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .company-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .system-title {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 4rem 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
-        }
-
-        .confirmation-section {
-            text-align: center;
-            max-width: 700px;
-            width: 100%;
-        }
-
-        .success-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            animation: bounce 1s ease-in-out;
-            color: #28a745;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-15px);
-            }
-            60% {
-                transform: translateY(-7px);
-            }
-        }
-
-        .confirmation-title {
-            font-size: 2.5rem;
-            color: #1e3c72;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .message-box {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            padding: 2.5rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            border-left: 6px solid #2a5298;
-            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.1);
-        }
-
-        .main-message {
-            font-size: 1.3rem;
-            color: #1e3c72;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        .thank-you-section {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
-        }
-
-        .thank-you-message {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
-        .action-button {
-            background: linear-gradient(135deg, #2a5298, #1e3c72);
-            color: white;
-            border: none;
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .action-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .action-button:hover::before {
-            left: 100%;
-        }
-
-        .action-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(30, 60, 114, 0.4);
-        }
-
-        .secondary-btn {
-            background: linear-gradient(135deg, #6c757d, #5a6268);
-            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
-        }
-
-        .secondary-btn:hover {
-            box-shadow: 0 15px 35px rgba(108, 117, 125, 0.4);
-        }
-
-        .button-icon {
-            font-size: 1.2rem;
-        }
-
-        .language-switcher {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 10;
-        }
-
-        .language-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 0.5rem 1rem;
-            margin: 0 0.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .language-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .language-btn.active {
-            background: white;
-            color: #1e3c72;
-            border-color: white;
-        }
-
-        .rtl {
-            direction: rtl;
-            text-align: right;
-        }
-
-        .rtl .header {
-            text-align: center;
-        }
-
-        .rtl .confirmation-section {
-            text-align: center;
-        }
-
-        .footer {
-            background: #1e3c72;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 1.5rem 1rem;
-            }
-            
-            .company-name {
-                font-size: 1.4rem;
-            }
-            
-            .main-content {
-                padding: 2rem 1rem;
-            }
-            
-            .confirmation-title {
-                font-size: 2rem;
-            }
-            
-            .message-box {
-                padding: 2rem;
-            }
-            
-            .main-message {
-                font-size: 1.1rem;
-            }
-            
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-button {
-                padding: 1.2rem 1.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -768,7 +502,9 @@
                 <button class="language-btn" onclick="switchLanguage('ar')">العربية</button>
             </div>
             <div class="header-content">
-                <div class="logo">AS</div>
+                <div class="logo">
+                    <img src="images/logo.png" alt="ALSAQIR Logo">
+                </div>
                 <h1 class="company-name" data-en="ALSAQIR BUSINESS MEN SERVICES CENTER" data-ar="مركز الصقر لخدمات رجال الأعمال">ALSAQIR BUSINESS MEN SERVICES CENTER</h1>
                 <h2 class="system-title" data-en="Request Confirmation" data-ar="تأكيد الطلب">Request Confirmation</h2>
             </div>
@@ -815,7 +551,7 @@
         </main>
 
         <footer class="footer">
-            <p data-en="&copy; 2024 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved." data-ar="&copy; 2024 مركز الصقر لخدمات رجال الأعمال. جميع الحقوق محفوظة.">&copy; 2024 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved.</p>
+            <p data-en="&copy; 2025 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved." data-ar="&copy; 2025 مركز الصقر لخدمات رجال الأعمال. جميع الحقوق محفوظة.">&copy; 2025 ALSAQIR BUSINESS MEN SERVICES CENTER. All rights reserved.</p>
         </footer>
     </div>
 
