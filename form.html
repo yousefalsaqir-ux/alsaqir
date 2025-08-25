@@ -35,6 +35,28 @@
             z-index: -1;
         }
 
+        /* Professional top border */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: professionalGradient 10s ease infinite;
+            z-index: 1000;
+        }
+
+        @keyframes professionalGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
         @keyframes float {
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.1) rotate(5deg); }
@@ -44,14 +66,15 @@
             max-width: 1400px;
             margin: 0 auto;
             min-height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(25px);
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             position: relative;
+            margin-top: 8px;
         }
 
         .container::before {
@@ -524,7 +547,7 @@
             </div>
             <div class="header-content">
                 <div class="logo">
-                    <img src="images/logo.png" alt="ALSAQIR Logo">
+                    <img src="https://github.com/yousefalsaqir-ux/alsaqir/blob/system/images/logo.png?raw=true" alt="ALSAQIR Logo">
                 </div>
                 <h1 class="company-name" data-en="ALSAQIR BUSINESS MEN SERVICES CENTER" data-ar="مركز الصقر لخدمات رجال الأعمال">ALSAQIR BUSINESS MEN SERVICES CENTER</h1>
                 <h2 class="system-title" id="form-title" data-en="Submit Your Request" data-ar="تقديم طلبك">Submit Your Request</h2>
